@@ -67,7 +67,7 @@ export const handleLogin = async (req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 9000000,
-            sameSite: "strict"
+            sameSite: "none"
         })
 
         if (token) {
