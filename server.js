@@ -14,7 +14,7 @@ connectDB();
 const app = express();
 
 app.use(cors({
-    origin: "https://vercel-frontend-fvj85hn46-harshahsdevs-projects.vercel.app",
+    origin: "https://vercel-frontend-five-ruby.vercel.app",
     credentials: true
 }));
 
