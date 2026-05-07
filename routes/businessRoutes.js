@@ -15,6 +15,7 @@ import upload from "../middleware/upload.js";
 const router = express.Router();
 router.get("/search", searchBusiness);
 router.get("/nearby", getNearbyBusiness);
+router.get("/list", getBusinesses);
 router.get("/", getBusinesses);
 router.get("/:slug", getBusinessBySlug);
 router.post("/", verifyAuth, createBusiness);
