@@ -24,7 +24,6 @@ router.delete("/:id", verifyAuth, requirePremium, deleteBusiness);
 router.post(
     "/:id/upload-image",
     verifyAuth,
-    requirePremium,
     upload.array("images", 5),
     uploadImage
 );
