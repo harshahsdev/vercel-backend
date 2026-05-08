@@ -22,16 +22,22 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-
-    // allow requests with no origin
+    // allow Postman / server-to-server requests
     if (!origin) return callback(null, true);
 
     if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
+      return callback(null, true);
     }
+
+    // IMPORTANT: don't crash server with error (prevents CORS failure)
+    return callback(null, false);
   },
+  credentials: true
+}));
+
+// Preflight support
+app.options("*", cors({
+  origin: allowedOrigins,
   credentials: true
 }));
 
@@ -50,9 +56,7 @@ app.use("/api/review", reviewRoutes);
 
 /* 404 Handler */
 app.use((req, res) => {
-  res.status(404).json({
-    message: "Route not found"
-  });
+  res.status(404).json({ message: "Route not found" });
 });
 
 /* Error Handler */
