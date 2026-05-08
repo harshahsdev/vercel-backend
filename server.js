@@ -16,7 +16,7 @@ const app = express();
 
 /* Middleware */
 const allowedOrigins = [
-  "https://vercel-frontend-nu-six.vercel.app/"
+  "https://vercel-frontend-nu-six.vercel.app"
 ];
 
 const corsOptions = {
