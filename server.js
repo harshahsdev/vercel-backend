@@ -23,7 +23,6 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow server-to-server / mobile apps / curl
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
@@ -39,7 +38,7 @@ app.use(
 );
 
 /* Handle preflight requests */
-app.options("*", cors());
+app.options(/.*/, cors());
 
 /* ---------------- MIDDLEWARE ---------------- */
 app.use(express.json());
@@ -54,8 +53,7 @@ app.use("/api/business", businessRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/review", reviewRoutes);
 
-/* ---------------- 404 HANDLER (IMPORTANT FIX) ---------------- */
-// ❌ DO NOT use "*"
+/* ---------------- 404 HANDLER ---------------- */
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
