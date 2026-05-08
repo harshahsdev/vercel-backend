@@ -23,17 +23,17 @@ const route = express.Router();
 
 // const router = express.Router();
 
-router.get("/register", (req, res) => {
+route.get("/register", (req, res) => {
   res.send("GET register works");
 });
 
-router.post("/register", (req, res) => {
+route.post("/register", (req, res) => {
   res.status(200).json({
     success: true,
     message: "POST register works"
   });
 });
 
-export default router;
+export default route;
 
 
