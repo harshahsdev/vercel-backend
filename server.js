@@ -16,8 +16,9 @@ const app = express();
 
 /* Middleware */
 const allowedOrigins = [
-  "https://vercel-frontend-drab-six.vercel.app"
+  "https://vercel-frontend-rho-two.vercel.app"
 ];
+
 
 const corsOptions = {
   origin: (origin, callback) => {
