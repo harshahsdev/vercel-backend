@@ -17,7 +17,7 @@ const app = express();
 /* ---------------- CORS ---------------- */
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://vercel-frontend-five-ruby.vercel.app"
+  "https://vercel-frontend-vsjq.vercel.app"
 ];
 
 app.use(
