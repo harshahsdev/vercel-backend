@@ -15,25 +15,29 @@ connectDB();
 const app = express();
 
 /* ---------------- CORS ---------------- */
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://vercel-frontend-vsjq.vercel.app"
-];
+// const allowedOrigins = [
+//   "http://localhost:5173",
+//   "https://vercel-frontend-vsjq.vercel.app"
+// ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       if (!origin) return callback(null, true);
 
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
+//       if (allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       }
 
-      return callback(new Error("Not allowed by CORS"));
-    },
-    credentials: true
-  })
-);
+//       return callback(new Error("Not allowed by CORS"));
+//     },
+//     credentials: true
+//   })
+// );
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 
 /* ---------------- MIDDLEWARE ---------------- */
 app.use(express.json());
