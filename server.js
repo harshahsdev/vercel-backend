@@ -38,11 +38,12 @@ const app = express();
 //   origin: true,
 //   credentials: true
 // }));
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
+// app.use(cors({
+//   origin: "*",
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// }));
+app.use(cors());
 
 /* ---------------- MIDDLEWARE ---------------- */
 app.use(express.json());

@@ -5,7 +5,12 @@ import { verifyAuth, verifyRefresh } from '../middleware/authMiddleware.js';
 
 const route = express.Router();
 
-route.post('/register',handleRegister);
+router.post("/register", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Register route working"
+  });
+});
 route.post('/login', handleLogin);
 route.get('/token', verifyRefresh, handleRefreshToken);
 route.post('/subscribe', verifyAuth, handleSubscribe);
