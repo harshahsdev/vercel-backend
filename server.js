@@ -14,46 +14,26 @@ connectDB();
 
 const app = express();
 
+console.log("========== NEW BACKEND VERSION ==========");
+
 /* ---------------- CORS ---------------- */
-// const allowedOrigins = [
-//   "http://localhost:5173",
-//   "https://vercel-frontend-vsjq.vercel.app"
-// ];
-
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//       if (!origin) return callback(null, true);
-
-//       if (allowedOrigins.includes(origin)) {
-//         return callback(null, true);
-//       }
-
-//       return callback(new Error("Not allowed by CORS"));
-//     },
-//     credentials: true
-//   })
-// );
-// app.use(cors({
-//   origin: true,
-//   credentials: true
-// }));
-// app.use(cors({
-//   origin: "*",
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-// }));
 app.use(cors());
 
 /* ---------------- MIDDLEWARE ---------------- */
 app.use(express.json());
 app.use(cookieParser());
 
-/* ---------------- ROUTES ---------------- */
+/* ---------------- TEST ROUTE ---------------- */
+app.get("/harsha-test", (req, res) => {
+  res.send("HARSHA TEST WORKING");
+});
+
+/* ---------------- ROOT ROUTE ---------------- */
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
+/* ---------------- ROUTES ---------------- */
 app.use("/api/business", businessRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/review", reviewRoutes);
