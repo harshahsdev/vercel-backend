@@ -40,7 +40,7 @@ export const createBusiness = async (req, res) => {
     }
 
     // duplicate check
-    const existingBusiness = await Business.findOne({ name, location, owner: req.user.userID });
+    const existingBusiness = await Business.findOne({ name, location });
     if (existingBusiness) {
       return res.status(400).json({
         message: "Business with same name and location already exists"
