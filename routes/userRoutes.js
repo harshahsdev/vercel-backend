@@ -5,19 +5,36 @@ import { verifyAuth, verifyRefresh } from '../middleware/authMiddleware.js';
 
 const route = express.Router();
 
+// router.get("/register", (req, res) => {
+//   res.send("GET register route works");
+// });
+// router.post("/register", (req, res) => {
+//   res.status(200).json({
+//     success: true,
+//     message: "Register route working"
+//   });
+// });
+// route.post('/login', handleLogin);
+// route.get('/token', verifyRefresh, handleRefreshToken);
+// route.post('/subscribe', verifyAuth, handleSubscribe);
+// // route.get('/me', verifyAuth, handleMe);
+
+import express from "express";
+
+const router = express.Router();
+
 router.get("/register", (req, res) => {
-  res.send("GET register route works");
+  res.send("GET register works");
 });
+
 router.post("/register", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Register route working"
+    message: "POST register works"
   });
 });
-route.post('/login', handleLogin);
-route.get('/token', verifyRefresh, handleRefreshToken);
-route.post('/subscribe', verifyAuth, handleSubscribe);
-// route.get('/me', verifyAuth, handleMe);
+
+export default router;
 
 
 export default route;
