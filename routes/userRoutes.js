@@ -19,9 +19,9 @@ const route = express.Router();
 // route.post('/subscribe', verifyAuth, handleSubscribe);
 // // route.get('/me', verifyAuth, handleMe);
 
-import express from "express";
+// import express from "express";
 
-const router = express.Router();
+// const router = express.Router();
 
 router.get("/register", (req, res) => {
   res.send("GET register works");
