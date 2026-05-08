@@ -16,13 +16,19 @@ const app = express();
 
 /* Middleware */
 const allowedOrigins = [
-  "https://vercel-frontend-rho-two.vercel.app"
+  "https://vercel-frontend-rho-two.vercel.app",
+  "https://vercel-frontend-drab-six.vercel.app"
 ];
-
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin) {
+      callback(null, true);
+      return;
+    }
+
+    const isAllowed = allowedOrigins.includes(origin) || /\.vercel\.app$/i.test(origin);
+    if (isAllowed) {
       callback(null, true);
     } else {
       callback(new Error(`CORS policy: origin ${origin} not allowed`));
