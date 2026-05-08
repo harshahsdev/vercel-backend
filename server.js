@@ -14,39 +14,32 @@ connectDB();
 
 const app = express();
 
-console.log("========== NEW BACKEND VERSION ==========");
+/* Middleware */
+app.use(cors({
+  origin: "https://vercel-frontend-vsjq.vercel.app",
+  credentials: true
+}));
 
-/* ---------------- CORS ---------------- */
-app.use(cors());
-
-/* ---------------- MIDDLEWARE ---------------- */
 app.use(express.json());
 app.use(cookieParser());
 
-/* ---------------- TEST ROUTE ---------------- */
-app.get("/harsha-test", (req, res) => {
-  res.send("HARSHA TEST WORKING");
-});
-
-/* ---------------- ROOT ROUTE ---------------- */
+/* Routes */
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-/* ---------------- ROUTES ---------------- */
 app.use("/api/business", businessRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/review", reviewRoutes);
 
-/* ---------------- 404 HANDLER ---------------- */
+/* Error Handlers */
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-/* ---------------- ERROR HANDLER ---------------- */
 app.use(errorHandler);
 
-/* ---------------- START SERVER ---------------- */
+/* Server */
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
