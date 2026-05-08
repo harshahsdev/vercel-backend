@@ -14,49 +14,28 @@ connectDB();
 
 const app = express();
 
-/* Middleware */
+/* CORS */
 const allowedOrigins = [
   "https://vercel-frontend-rho-two.vercel.app",
   "https://vercel-frontend-drab-six.vercel.app"
 ];
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin) {
-      callback(null, true);
-      return;
-    }
+app.use(cors({
+  origin: function (origin, callback) {
 
-    const isAllowed = allowedOrigins.includes(origin) || /\.vercel\.app$/i.test(origin);
-    if (isAllowed) {
+    // allow requests with no origin
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error(`CORS policy: origin ${origin} not allowed`));
+      callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 200
-};
+  credentials: true
+}));
 
-app.use(cors(corsOptions));
-app.options(/.*/, cors(corsOptions));
-
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (origin && (/\.vercel\.app$/i.test(origin) || allowedOrigins.includes(origin))) {
-    res.header("Access-Control-Allow-Origin", origin);
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  }
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
-
+/* Middleware */
 app.use(express.json());
 app.use(cookieParser());
 
@@ -69,11 +48,14 @@ app.use("/api/business", businessRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/review", reviewRoutes);
 
-/* Error Handlers */
+/* 404 Handler */
 app.use((req, res) => {
-  res.status(404).json({ message: "Route not found" });
+  res.status(404).json({
+    message: "Route not found"
+  });
 });
 
+/* Error Handler */
 app.use(errorHandler);
 
 /* Server */
