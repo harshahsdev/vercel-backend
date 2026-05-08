@@ -34,9 +34,14 @@ const app = express();
 //     credentials: true
 //   })
 // );
+// app.use(cors({
+//   origin: true,
+//   credentials: true
+// }));
 app.use(cors({
-  origin: true,
-  credentials: true
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
 /* ---------------- MIDDLEWARE ---------------- */
