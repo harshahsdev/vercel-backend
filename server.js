@@ -36,10 +36,11 @@ app.use(cors({
 }));
 
 // Preflight support
-app.options("*", cors({
+app.options(/.*/, cors({
   origin: allowedOrigins,
   credentials: true
 }));
+
 
 /* Middleware */
 app.use(express.json());
