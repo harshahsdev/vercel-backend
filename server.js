@@ -17,7 +17,7 @@ const app = express();
 /* CORS */
 const allowedOrigins = [
   "https://vercel-frontend-rho-two.vercel.app",
-  "https://vercel-frontend-drab-six.vercel.app"
+  "https://vercel-frontend-three-ruby.vercel.app"
 ];
 
 app.use(cors({
